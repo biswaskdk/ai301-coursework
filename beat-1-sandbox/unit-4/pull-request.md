@@ -15,7 +15,7 @@ label is not graded.
 
 **Pull request**
 
-Not opened yet.
+https://github.com/codepath/pathreview-ai301-fa26-s3/pull/130
 
 **Branch**
 
@@ -28,13 +28,31 @@ fields.
 
 **Run history**
 
-No `pr-precheck` evaluation run has been performed. The `20/20` run recorded under
-Unit 3 is for the different `plan-check` skill and is not a valid Unit 4 result.
+1. Full run (first pass): `agreement: 16/20 scored items  (bar: 18/20: below the bar)`.
+   Four clear-accept packages (pkg-05, pkg-11, pkg-13, pkg-19) were wrongly rejected,
+   three on "Test evidence is decisive" and one on "Description matches the diff" —
+   both checks were written too strictly (demanding a separately pasted transcript for
+   every named control step, and a literal per-item count for bundled description
+   claims).
+2. `--only pkg-05,pkg-11,pkg-13,pkg-19,pkg-04,pkg-10,pkg-03,pkg-09` (after loosening
+   both checks' pass conditions, with pkg-04/pkg-10/pkg-03/pkg-09 as canaries from the
+   not-tested and silent-drift categories the change could flip): `agreement: 8/8
+   scored items`, no canary flipped.
+3. Full run with `--save-run eval-run.txt` (final, committed): `agreement: 20/20 scored
+   items  (bar: 18/20: PASS)`.
 
 **Package analysis**
 
-Not available yet: no scored package has been graded with `pr-precheck`, so there is no
-package verdict to compare with its gold label.
+`pkg-05` (nushell/nushell#18848): gold label `accept` (clear-accept). My rubric's first
+full run graded it `reject`, failing "Test evidence is decisive," because the evidence
+states the plan's second test-plan step (two same-name, same-key bindings producing one
+row plus a warning) only through an added unit test's assertions, not a separately
+pasted before/after transcript like the issue's own repro got. My pass condition at the
+time effectively required a shown transcript for every test-plan step, which this
+package's otherwise-decisive evidence didn't give for that one step. After loosening the
+check to accept a specific, named claim or an equivalent automated-test assertion for a
+secondary step (not just the primary repro), re-grading this package flipped it to
+`accept`, matching gold.
 
 **Check rationale**
 
