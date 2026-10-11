@@ -15,15 +15,11 @@ label is not graded.
 
 **Pull request**
 
-[Link to the pull request you opened. It must be the pull request's own page on the Path
-Review repo, not your fork's branch page.]
+Not opened yet.
 
 **Branch**
 
-[The name of the branch the pull request comes from, exactly as it appears in your fork.
-The naming shape is a type prefix, then the issue number, then a short description. **The
-issue number in the branch name must be the number of the issue the pull request fixes** —
-a name carrying any other number does not satisfy this field.]
+`fix/68-empty-keyword-index`
 
 ## Eval iterations
 
@@ -32,28 +28,28 @@ fields.
 
 **Run history**
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+No `pr-precheck` evaluation run has been performed. The `20/20` run recorded under
+Unit 3 is for the different `plan-check` skill and is not a valid Unit 4 result.
 
 **Package analysis**
 
-[Pick one scored package (`pkg-01` through `pkg-20` — the four `calib-` packages are never
-scored). Name it by id, say what your rubric decided and what the gold label said, and
-explain why your rubric read it that way.]
+Not available yet: no scored package has been graded with `pr-precheck`, so there is no
+package verdict to compare with its gold label.
 
 **Check rationale**
 
-[Quote one check from the `rubric.md` you uploaded to `tools/pr-precheck/`, exactly as it reads now.
-Then say why it reads that way — what you revised to get there, or what you rejected in
-favour of it.]
+From `tools/pr-precheck/rubric.md`, **Diff matches plan scope**:
+
+> Pass if every changed file and every hunk falls inside the plan's stated in-scope area, or is named in a deviation note written into the plan before/alongside the PR. Fail if the diff touches a file or behavior the plan scopes out or never mentions, and no deviation note accounts for it — regardless of whether the extra change looks adjacent or beneficial. Unclear if the package has no plan scope statement to compare against
+
+This makes scope fidelity depend on the actual changed files and hunks, while allowing a documented deviation to account for a changed approach. It is intended to catch silent drift without rejecting an honestly disclosed shortfall.
 
 **Trade-offs**
 
-[Every check gives something up. Any one of these is a complete answer: a package whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+The required checks deliberately treat an `unclear` result as a failure, so an unverifiable
+claim can hold an otherwise plausible PR. The trade-off is stricter review when evidence is
+missing; the rubric avoids penalizing a disclosed deviation when the other required checks
+pass.
 
 ---
 

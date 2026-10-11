@@ -81,7 +81,13 @@ tests/unit/test_keyword_search.py::TestKeywordSearcher::test_empty_index PASSED
 ============================= 17 passed in 0.21s ==============================
 ```
 
-The focused test file passed in full. The full-repository lint, typecheck, and unit-test commands have not been run.
+The focused test file passed in full. After writing this record, I reran the full unit suite, lint, and typecheck
+from the Path Review repository. `pytest tests/unit -v -m unit` reported
+376 passed and 52 xfailed; `ruff check .` passed; and
+`mypy api/ core/ ingestion/ rag/ agent/ safety/` reported no issues in
+76 source files. The integration command collected no tests and exited
+with pytest code 5, which is expected because this repository has no
+integration tests. The outputs are recorded in `test_evidence.md`.
 
 ## Eval iterations
 
